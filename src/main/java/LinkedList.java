@@ -151,6 +151,7 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T remove(final int index) {
         // BEGIN (write your solution here)
+        something for testing merge
         return null;
         // END
     }
