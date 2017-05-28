@@ -167,7 +167,7 @@ public class LinkedList<T> implements List<T> {
             if (index < size / 2 ) {
                 Item<T> x = first;
                 while (x != null) {
-                    
+
                     i++;
                     x = x.next;
                 }
