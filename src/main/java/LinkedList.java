@@ -151,6 +151,35 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T remove(final int index) {
         // BEGIN (write your solution here)
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        else if (index == 0) {
+            first = first.next;
+            size--;
+        }
+        else if (index == size) {
+            last = last.prev;
+            size--;
+        }
+        else {
+            int i = 0;
+            if (index < size / 2 ) {
+                Item<T> x = first;
+                while (x != null) {
+                    
+                    i++;
+                    x = x.next;
+                }
+            }
+            else {
+                Item<T> x = last;
+
+            }
+
+        }
+
+
         return null;
         // END
     }
