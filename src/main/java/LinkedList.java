@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Collection;
-import java.util.NoSuchElementException;
 import java.util.ListIterator;
 import java.util.Iterator;
 public class LinkedList<T> implements List<T> {
@@ -221,7 +220,16 @@ public class LinkedList<T> implements List<T> {
     @Override
     public int indexOf(final Object target) {
         // BEGIN (write your solution here)
-        return 0;
+        Item<T> x = first;
+        int i = 0;
+        while (x != null) {
+            if (x.equals(target)) {
+                return i;
+            }
+            i++;
+            x = x.next;
+        }
+        return -1;
         // END
     }
 
