@@ -155,31 +155,42 @@ public class LinkedList<T> implements List<T> {
             throw new IndexOutOfBoundsException();
         }
         else if (index == 0) {
+            Item<T> returnedItem = first;
             first = first.next;
             size--;
+            return returnedItem.getElement();
         }
         else if (index == size) {
+            Item<T> returnedItem = last;
             last = last.prev;
             size--;
+            return returnedItem.getElement();
         }
         else {
-            int i = 0;
-            if (index < size / 2 ) {
+            if (index < size/2) {
                 Item<T> x = first;
-                while (x != null) {
-
-                    i++;
+                for(int i = 0; i < size / 2; i++) {
+                    if (i == index) {
+                        x.prev.next = x.next;
+                        x.next.prev = x.prev;
+                        return x.getElement();
+                    }
                     x = x.next;
                 }
             }
             else {
                 Item<T> x = last;
-
+                for(int i = size; i >= size / 2; i--) {
+                    if (i == index) {
+                        x.prev.next = x.next;
+                        x.next.prev = x.prev;
+                        return x.getElement();
+                    }
+                    x = x.prev;
+                }
             }
 
         }
-
-
         return null;
         // END
     }
