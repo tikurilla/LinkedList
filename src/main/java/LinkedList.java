@@ -241,19 +241,26 @@ public class LinkedList<T> implements List<T> {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+//    @Override
     public T set(final int index, final T element) {
         // BEGIN (write your solution here)
         checkIndex(index);
         if (index == 0) {
             Item<T> returnedItem = first;
-            first = new Item<>(element, null, first);
+            Item<T> newItem;
+            newItem = new Item<>(element, null, first);
+            first = newItem;
+            returnedItem.prev = first;
+            size++;
             return returnedItem.getElement();
         }
         else if (index == size) {
             Item<T> returnedItem = last;
-            last = last.prev;
-            size--;
+            Item<T> newItem;
+            newItem = new Item<>(element, last, null);
+            last = newItem;
+            returnedItem.next = last;
+            size++;
             return returnedItem.getElement();
         }
         return null;

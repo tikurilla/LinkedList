@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 import static org.junit.Assert.*;
@@ -82,5 +83,39 @@ public class LinkedListTest {
         assertTrue(testInstance.isEmpty());
         assertFalse(testInstance.contains(1));
         assertEquals(0, testInstance.size());
+    }
+
+    @Test
+    public void testSetFirstElement() throws Exception {
+        final List<Integer> testInstance = new LinkedList<>();
+        testInstance.add(2);
+        testInstance.add(3);
+        testInstance.add(4);
+        testInstance.add(5);
+        
+        testInstance.set(0, 1);
+        assertFalse(testInstance.isEmpty());
+        for (int i = 1; i <= testInstance.size(); i++) {
+            assertTrue(testInstance.contains(i));
+        }
+        assertFalse(testInstance.contains(6));
+
+    }
+
+    @Test
+    public void testSetLastElement() throws Exception {
+        final List<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(2);
+        testInstance.add(3);
+        testInstance.add(4);
+
+        testInstance.set(3, 5);
+        assertFalse(testInstance.isEmpty());
+        for (int i = 1; i <= testInstance.size(); i++) {
+            assertTrue(testInstance.contains(i));
+        }
+        assertFalse(testInstance.contains(6));
+
     }
 }
