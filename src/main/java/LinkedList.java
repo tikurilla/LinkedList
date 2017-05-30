@@ -58,13 +58,13 @@ public class LinkedList<T> implements List<T> {
     public boolean add(final T t) {
         // BEGIN (write your solution here)
         if (this.isEmpty()){
-            Item<T> newItem = new Item<T>(t, first, last);
+            Item<T> newItem = new Item<>(t, first, last);
             first = newItem;
             last = newItem;
             size++;
         }
         else {
-            Item<T> newItem = new Item<T>(t, last, null);
+            Item<T> newItem = new Item<>(t, last, null);
             last.next = newItem;
             last = newItem;
             size++;
@@ -150,10 +150,8 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T remove(final int index) {
         // BEGIN (write your solution here)
-        if (index < 0 || index >= size()) {
-            throw new IndexOutOfBoundsException();
-        }
-        else if (index == 0) {
+        checkIndex(index);
+        if (index == 0) {
             Item<T> returnedItem = first;
             first = first.next;
             size--;
@@ -246,6 +244,18 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T set(final int index, final T element) {
         // BEGIN (write your solution here)
+        checkIndex(index);
+        if (index == 0) {
+            Item<T> returnedItem = first;
+            first = new Item<>(element, null, first);
+            return returnedItem.getElement();
+        }
+        else if (index == size) {
+            Item<T> returnedItem = last;
+            last = last.prev;
+            size--;
+            return returnedItem.getElement();
+        }
         return null;
         // END
     }
@@ -258,7 +268,11 @@ public class LinkedList<T> implements List<T> {
     }
 
     // BEGIN (write your solution here)
-
+    private void checkIndex(final int index) {
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
     // END
 
     private class ElementsIterator implements ListIterator<T> {
