@@ -86,6 +86,31 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testRemoveByIndex() throws Exception {
+        final LinkedList<String> testInstance = new LinkedList<>();
+        testInstance.add("abc");
+        testInstance.add("def");
+        testInstance.add("ghi");
+        testInstance.add("jkl");
+        testInstance.add("mno");
+
+        testInstance.remove(2);
+        assertFalse(testInstance.isEmpty());
+        assertTrue(testInstance.contains("abc"));
+        assertTrue(testInstance.contains("def"));
+        assertFalse(testInstance.contains("ghi"));
+        assertTrue(testInstance.contains("jkl"));
+        assertTrue(testInstance.contains("mno"));
+        assertEquals(4, testInstance.size());
+        testInstance.remove(1);
+        assertTrue(testInstance.contains("abc"));
+        assertFalse(testInstance.contains("def"));
+        assertTrue(testInstance.contains("jkl"));
+        assertTrue(testInstance.contains("mno"));
+        assertEquals(3, testInstance.size());
+    }
+
+    @Test
     public void testSetFirstElement() throws Exception {
         final List<Integer> testInstance = new LinkedList<>();
         testInstance.add(2);

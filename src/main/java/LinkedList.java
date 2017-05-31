@@ -170,6 +170,7 @@ public class LinkedList<T> implements List<T> {
                     if (i == index) {
                         x.prev.next = x.next;
                         x.next.prev = x.prev;
+                        size--;
                         return x.getElement();
                     }
                     x = x.next;
@@ -177,10 +178,11 @@ public class LinkedList<T> implements List<T> {
             }
             else {
                 Item<T> x = last;
-                for(int i = size; i >= size / 2; i--) {
+                for(int i = size - 1; i >= size / 2; i--) {
                     if (i == index) {
                         x.prev.next = x.next;
                         x.next.prev = x.prev;
+                        size--;
                         return x.getElement();
                     }
                     x = x.prev;
