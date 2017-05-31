@@ -157,7 +157,7 @@ public class LinkedList<T> implements List<T> {
             size--;
             return returnedItem.getElement();
         }
-        else if (index == size) {
+        else if (index == size - 1) {
             Item<T> returnedItem = last;
             last = last.prev;
             size--;
@@ -249,21 +249,49 @@ public class LinkedList<T> implements List<T> {
         checkIndex(index);
         if (index == 0) {
             Item<T> returnedItem = first;
-            Item<T> newItem;
-            newItem = new Item<>(element, null, first);
+            Item<T> newItem = new Item<>(element, null, first.next);
+            first.next.prev = newItem;
             first = newItem;
-            returnedItem.prev = first;
-            size++;
             return returnedItem.getElement();
         }
-        else if (index == size) {
+        else if (index == size - 1) {
             Item<T> returnedItem = last;
-            Item<T> newItem;
-            newItem = new Item<>(element, last, null);
+            Item<T> newItem = new Item<>(element, last.prev, null);
+            last.prev.next = newItem;
             last = newItem;
-            returnedItem.next = last;
-            size++;
             return returnedItem.getElement();
+        }
+        else {
+            if (index < size/2) {
+                Item<T> x = first;
+                for(int i = 0; i < size / 2; i++) {
+                    if (i == index) {
+                        Item<T> returnedItem = x;
+                        Item<T> newItem;
+                        newItem = new Item<>(element, x.prev, x.next);
+                        x.prev.next = newItem;
+                        x.next.prev = newItem;
+                        x = newItem;
+                        return returnedItem.getElement();
+                    }
+                    x = x.next;
+                }
+            }
+            else {
+                Item<T> x = last;
+                for(int i = size - 1; i >= size / 2; i--) {
+                    if (i == index) {
+                        Item<T> returnedItem = x;
+                        Item<T> newItem;
+                        newItem = new Item<>(element, x.prev, x.next);
+                        x.prev.next = newItem;
+                        x.next.prev = newItem;
+                        x = newItem;
+                        return returnedItem.getElement();
+                    }
+                    x = x.prev;
+                }
+            }
         }
         return null;
         // END

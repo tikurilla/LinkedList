@@ -113,13 +113,15 @@ public class LinkedListTest {
     @Test
     public void testSetFirstElement() throws Exception {
         final List<Integer> testInstance = new LinkedList<>();
+        testInstance.add(20);
         testInstance.add(2);
         testInstance.add(3);
         testInstance.add(4);
         testInstance.add(5);
-        
-        testInstance.set(0, 1);
+
+        assertEquals(20, (int)testInstance.set(0, 1));
         assertFalse(testInstance.isEmpty());
+        assertFalse(testInstance.contains(20));
         for (int i = 1; i <= testInstance.size(); i++) {
             assertTrue(testInstance.contains(i));
         }
@@ -134,8 +136,10 @@ public class LinkedListTest {
         testInstance.add(2);
         testInstance.add(3);
         testInstance.add(4);
+        testInstance.add(20);
 
-        testInstance.set(3, 5);
+        assertEquals(20, (int)testInstance.set(4, 5));
+        assertFalse(testInstance.contains(20));
         assertFalse(testInstance.isEmpty());
         for (int i = 1; i <= testInstance.size(); i++) {
             assertTrue(testInstance.contains(i));
@@ -143,4 +147,23 @@ public class LinkedListTest {
         assertFalse(testInstance.contains(6));
 
     }
+
+    @Test
+    public void testSetVariousElement() throws Exception {
+        final List<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(2);
+        testInstance.add(20);
+        testInstance.add(4);
+        testInstance.add(5);
+
+        assertEquals(20, (int)testInstance.set(2, 3));
+        assertFalse(testInstance.contains(20));
+        assertFalse(testInstance.isEmpty());
+        for (int i = 1; i <= testInstance.size(); i++) {
+            assertTrue(testInstance.contains(i));
+        }
+        assertFalse(testInstance.contains(6));
+    }
+
 }
