@@ -126,6 +126,7 @@ public class LinkedListTest {
             assertTrue(testInstance.contains(i));
         }
         assertFalse(testInstance.contains(6));
+        assertEquals(1, (int)testInstance.get(0));
 
     }
 
@@ -145,6 +146,7 @@ public class LinkedListTest {
             assertTrue(testInstance.contains(i));
         }
         assertFalse(testInstance.contains(6));
+        assertEquals(5, (int)testInstance.get(4));
 
     }
 
@@ -164,6 +166,7 @@ public class LinkedListTest {
             assertTrue(testInstance.contains(i));
         }
         assertFalse(testInstance.contains(6));
+        assertEquals(3, (int)testInstance.get(2));
     }
 
 }

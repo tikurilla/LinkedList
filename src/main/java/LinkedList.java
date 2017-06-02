@@ -300,6 +300,16 @@ public class LinkedList<T> implements List<T> {
     @Override
     public T get(final int index) {
         // BEGIN (write your solution here)
+        checkIndex(index);
+        Item<T> x = first;
+        int i = 0;
+        while (x != null) {
+            if (i == index) {
+                return x.getElement();
+            }
+            i++;
+            x = x.next;
+        }
         return null;
         // END
     }
