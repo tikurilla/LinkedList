@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.Collection;
 import java.util.ListIterator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 public class LinkedList<T> implements List<T> {
 
     private Item<T> first = null;
@@ -328,13 +329,24 @@ public class LinkedList<T> implements List<T> {
 
         private Item<T> last;
 
+        private int position;
+
         public ElementsIterator() {
             this(0);
         }
 
         public ElementsIterator(final int index) {
             // BEGIN (write your solution here)
-
+            checkIndex(index);
+            Item<T> x = first;
+            int i = 0;
+            while (x != null) {
+                if (i == index) {
+                    this.current = x;
+                }
+                x = x.next;
+                i++;
+            }
             // END
         }
 
@@ -346,7 +358,12 @@ public class LinkedList<T> implements List<T> {
         @Override
         public T next() {
             // BEGIN (write your solution here)
-            return null;
+            if (!hasNext())
+                throw new NoSuchElementException();
+            last = current;
+            current = current.next;
+            position++;
+            return last.getElement();
             // END
         }
 

@@ -169,4 +169,15 @@ public class LinkedListTest {
         assertEquals(3, (int)testInstance.get(2));
     }
 
+    @Test
+    public void testSet() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+        listIterator.next();
+//        listIterator.set(2);
+//        assertEquals((Integer)2, testInstance.get(0));
+    }
+
 }
