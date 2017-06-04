@@ -170,14 +170,27 @@ public class LinkedListTest {
     }
 
     @Test
+    public void testSetWhenNeitherNextNorPreviousHaveBeenCalled() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+
+        try {
+            listIterator.set(null);
+            fail("set method do not throw IllegalStateException the if neither next nor previous have been called");
+        } catch (final IllegalStateException e){}
+    }
+
+    @Test
     public void testSet() {
         final LinkedList<Integer> testInstance = new LinkedList<>();
         testInstance.add(1);
 
         final ListIterator<Integer> listIterator = testInstance.listIterator();
         listIterator.next();
-//        listIterator.set(2);
-//        assertEquals((Integer)2, testInstance.get(0));
+        listIterator.set(2);
+        assertEquals((Integer)2, testInstance.get(0));
     }
-
 }
+

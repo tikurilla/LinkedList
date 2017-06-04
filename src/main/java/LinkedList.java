@@ -251,7 +251,9 @@ public class LinkedList<T> implements List<T> {
         if (index == 0) {
             Item<T> returnedItem = first;
             Item<T> newItem = new Item<>(element, null, first.next);
-            first.next.prev = newItem;
+            if (size > 1) {
+                first.next.prev = newItem;
+            }
             first = newItem;
             return returnedItem.getElement();
         }
@@ -329,7 +331,7 @@ public class LinkedList<T> implements List<T> {
 
         private Item<T> last;
 
-        private int position;
+        private int position = -1;
 
         public ElementsIterator() {
             this(0);
@@ -375,7 +377,9 @@ public class LinkedList<T> implements List<T> {
         @Override
         public void set(final T element) {
             // BEGIN (write your solution here)
-
+            if (last == null)
+                throw new IllegalStateException();
+            LinkedList.this.set(position, element);
             // END
         }
 
