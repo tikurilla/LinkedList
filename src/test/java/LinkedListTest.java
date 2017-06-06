@@ -192,5 +192,40 @@ public class LinkedListTest {
         listIterator.set(2);
         assertEquals((Integer)2, testInstance.get(0));
     }
+
+    @Test
+    public void testPreviouseIndexWhenItEqualsTo1() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(1);
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+        listIterator.next();
+        listIterator.next();
+
+        assertEquals(1, listIterator.previousIndex());
+    }
+
+    @Test
+    public void testPreviouseIndex() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+        listIterator.next();
+
+        assertEquals(0, listIterator.previousIndex());
+    }
+
+    @Test
+    public void testPreviouseIndexWhenEmptyCollection() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+
+        assertEquals(-1, listIterator.previousIndex());
+    }
+
+
 }
 

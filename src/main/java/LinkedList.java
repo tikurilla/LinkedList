@@ -319,7 +319,7 @@ public class LinkedList<T> implements List<T> {
 
     // BEGIN (write your solution here)
     private void checkIndex(final int index) {
-        if (index < 0 || index >= size()) {
+        if (index < 0 || index >= size() && size()!= 0) {
             throw new IndexOutOfBoundsException();
         }
     }
@@ -386,14 +386,18 @@ public class LinkedList<T> implements List<T> {
         @Override
         public int previousIndex(){
             // BEGIN (write your solution here)
-            return -1;
+            if (position == -1)
+                return -1;
+            return position;
             // END
         }
 
         @Override
         public int nextIndex() {
             // BEGIN (write your solution here)
-            return -1;
+            if (position == size)
+                return size;
+            return position + 1;
             // END
         }
 
