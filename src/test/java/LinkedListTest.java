@@ -226,6 +226,49 @@ public class LinkedListTest {
         assertEquals(-1, listIterator.previousIndex());
     }
 
+    @Test
+    public void testHasPreviouseWhenIteratorAtTheEndOfTheCollection() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(2);
 
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+        listIterator.next();
+
+        assertTrue(listIterator.hasPrevious());
+    }
+
+    @Test
+    public void testHasPreviouseWhenEmptyCollection() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+
+        assertFalse(listIterator.hasPrevious());
+    }
+
+    @Test
+    public void testPreviouseOnCollectionWithOneElement() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+        final Integer next = listIterator.next();
+        final Integer previous = listIterator.previous();
+
+        assertEquals(next, previous);
+    }
+
+    @Test
+    public void testPreviouseWhenEmptyCollection() {
+        final LinkedList<Integer> testInstance = new LinkedList<>();
+
+        final ListIterator<Integer> listIterator = testInstance.listIterator();
+
+        try {
+            listIterator.previous();
+            fail("list iterator do not throw the Exception when called previous method on empty collection");
+        } catch (final java.util.NoSuchElementException e) {}
+    }
 }
 
