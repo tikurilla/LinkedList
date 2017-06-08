@@ -404,10 +404,10 @@ public class LinkedList<T> implements List<T> {
         @Override
         public boolean hasPrevious() {
             // BEGIN (write your solution here)
-            if (current!=null) {
-                return current.prev != null;
-            }
-            return false;
+//            if (current!=null) {
+//                return current.prev != null;
+//            }
+            return position > -1;
             // END
         }
 
@@ -416,8 +416,7 @@ public class LinkedList<T> implements List<T> {
             // BEGIN (write your solution here)
             if (!hasPrevious())
                 throw new NoSuchElementException();
-            last = current;
-            current = current.prev;
+            current = last;
             position--;
             return last.getElement();
             // END
