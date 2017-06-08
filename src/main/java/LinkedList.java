@@ -403,10 +403,6 @@ public class LinkedList<T> implements List<T> {
 
         @Override
         public boolean hasPrevious() {
-            // BEGIN (write your solution here)
-//            if (current!=null) {
-//                return current.prev != null;
-//            }
             return position > -1;
             // END
         }
@@ -425,9 +421,10 @@ public class LinkedList<T> implements List<T> {
         @Override
         public void remove() {
             // BEGIN (write your solution here)
-
-
-
+            if (last == null) throw new IllegalStateException();
+            LinkedList.this.remove(position);
+            position--;
+            last = null;
             // END
         }
 

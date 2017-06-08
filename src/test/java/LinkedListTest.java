@@ -270,5 +270,52 @@ public class LinkedListTest {
             fail("list iterator do not throw the Exception when called previous method on empty collection");
         } catch (final java.util.NoSuchElementException e) {}
     }
+
+    @Test
+    public void testRemoveBeforeNext() throws Exception {
+        final Collection<Integer> testInstance = new LinkedList<>();
+        testInstance.add(2);
+
+        final Iterator<Integer> iter = testInstance.iterator();
+        try {
+            iter.remove();
+            fail("remove do not throw the Exception when called before next");
+        } catch (final IllegalStateException e) {}
+    }
+
+    @Test
+    public void testNextOnEmptyCollection() throws Exception {
+        final Collection<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(2);
+
+        final Iterator<Integer> iter = testInstance.iterator();
+        iter.next();
+        iter.remove();
+        iter.next();
+        iter.remove();
+        try {
+            iter.next();
+            fail("next do not throw the Exception when no more ellements");
+        } catch (final java.util.NoSuchElementException e) {}
+    }
+
+    @Test
+    public void testRemoveTwoTimeInTheRow() throws Exception {
+        final Collection<Integer> testInstance = new LinkedList<>();
+        testInstance.add(1);
+        testInstance.add(2);
+
+        final Iterator<Integer> iter = testInstance.iterator();
+        iter.next();
+        iter.remove();
+        assertEquals("Expected collection size is 1, however actual is not", 1, testInstance.size());
+        try {
+            iter.remove();
+            fail("remove do not throw the Exception when called twice");
+        } catch (final IllegalStateException e) {}
+    }
+
+
 }
 
