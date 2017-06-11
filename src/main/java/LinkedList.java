@@ -44,14 +44,33 @@ public class LinkedList<T> implements List<T> {
     @Override
     public Object[] toArray() {
         // BEGIN (write your solution here)
-        return null;
+        final Object[] returnedArray = new Object[this.size()];
+        Item<T> x = first;
+        int i = 0;
+        while (x != null) {
+            returnedArray[i] = x.getElement();
+            x = x.next;
+            i++;
+        }
+        return returnedArray;
         // END
     }
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
         // BEGIN (write your solution here)
-        return null;
+        if (a.length < size)
+            a = (T1[])java.lang.reflect.Array.newInstance(a.getClass().getComponentType(), size);
+        int i = 0;
+        Object[] result = a;
+        Item<T> x = first;
+        while (x!=null) {
+            result[i++] = x.getElement();
+            x = x.next;
+        }
+        if (a.length > size)
+            a[size] = null;
+        return a;
         // END
     }
 
